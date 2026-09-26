@@ -5,3 +5,4 @@ static/uploads/*
 !static/uploads/.gitkeep
 .venv/
 .venv_bak_1790265089/
+history.db
