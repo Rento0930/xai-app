@@ -39,7 +39,7 @@ AIによる画像分類は高い精度を達成できる一方、「なぜその
 pip install -r requirements.txt
 ```
 
-### 2. `.env`ファイルの作成
+2. `.env`ファイルの作成
 
 プロジェクト直下に`.env`を作成し、以下を記載してください。
 GROQ_API_KEY=your_api_key_here
