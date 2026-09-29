@@ -377,30 +377,30 @@
             {% endfor %}
         </div>
 
-        <div class="results" style="margin-top: 20px;">
-            <h3>Grad-CAM Statistics / 統計情報</h3>
-            <div class="result-row">
-                <span class="result-label">Max Activation / 最大注目度</span>
-                <div class="bar-track">
-                    <div class="bar-fill" style="width: {{ heatmap_stats.max_activation }}%"></div>
-                </div>
-                <span class="result-pct">{{ heatmap_stats.max_activation }}%</span>
-            </div>
-            <div class="result-row">
-                <span class="result-label">Mean Activation / 平均注目度</span>
-                <div class="bar-track">
-                    <div class="bar-fill" style="width: {{ heatmap_stats.mean_activation }}%"></div>
-                </div>
-                <span class="result-pct">{{ heatmap_stats.mean_activation }}%</span>
-            </div>
-            <div class="result-row">
-                <span class="result-label">Concentration Score / 注目集中度</span>
-                <div class="bar-track">
-                    <div class="bar-fill" style="width: {{ heatmap_stats.concentration_score }}%"></div>
-                </div>
-                <span class="result-pct">{{ heatmap_stats.concentration_score }}%</span>
-            </div>
+<div class="results" style="margin-top: 20px;">
+    <h3>Grad-CAM Statistics / 統計情報</h3>
+    <div class="result-row">
+        <span class="result-label">Max Activation (raw) / 最大注目度(生値)</span>
+        <div class="bar-track">
+            <div class="bar-fill" style="width: {{ heatmap_stats.concentration_score }}%"></div>
         </div>
+        <span class="result-pct">{{ heatmap_stats.max_activation_raw }}</span>
+    </div>
+    <div class="result-row">
+        <span class="result-label">Mean Activation (raw) / 平均注目度(生値)</span>
+        <div class="bar-track">
+            <div class="bar-fill" style="width: {{ heatmap_stats.concentration_score }}%"></div>
+        </div>
+        <span class="result-pct">{{ heatmap_stats.mean_activation_raw }}</span>
+    </div>
+    <div class="result-row">
+        <span class="result-label">Concentration Score / 注目集中度</span>
+        <div class="bar-track">
+            <div class="bar-fill" style="width: {{ heatmap_stats.concentration_score }}%"></div>
+        </div>
+        <span class="result-pct">{{ heatmap_stats.concentration_score }}%</span>
+    </div>
+</div>
 
         <div class="results" style="margin-top: 20px;">
             <h3>Technical Explanation / 専門的な説明</h3>

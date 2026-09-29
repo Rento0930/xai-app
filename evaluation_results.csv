@@ -1,0 +1,51 @@
+﻿class_id,true_label,predicted_label,is_correct,top1_probability,max_activation_raw,mean_activation_raw,concentration_score,fuzzy_confidence_score
+654,minibus,minibus,True,44.71,0.0002,0.0001,77.55,47.14
+114,slug,slug,True,19.08,0.0005,0.0001,91.84,18.42
+25,European fire salamander,European fire salamander,True,39.15,0.0003,0.0001,81.63,43.79
+759,reflex camera,reflex camera,True,54.78,0.0004,0.0001,85.71,52.57
+281,tabby,laptop,False,27.28,0.0004,0.0001,91.84,32.3
+250,Siberian husky,wallaby,False,21.26,0.0003,0.0001,85.71,21.45
+228,komondor,komondor,True,27.19,0.0006,0.0001,91.84,32.17
+142,dowitcher,dowitcher,True,47.83,0.0003,0.0001,81.63,48.84
+754,radio,radio,True,33.24,0.0002,0.0001,67.35,39.21
+104,wallaby,wallaby,True,49.58,0.0007,0.0001,93.88,49.77
+692,packet,packet,True,56.97,0.0002,0.0001,71.43,53.81
+758,reel,reel,True,10.63,0.0005,0.0001,95.92,17.29
+913,wreck,wreck,True,65.07,0.0002,0.0001,65.31,59.32
+558,flute,dalmatian,False,20.66,0.0007,0.0001,91.84,20.11
+89,sulphur-crested cockatoo,sulphur-crested cockatoo,True,47.1,0.0004,0.0001,89.8,48.45
+604,hourglass,hourglass,True,32.35,0.0005,0.0001,87.76,38.37
+432,bassoon,bassoon,True,45.73,0.0005,0.0001,89.8,47.71
+32,tailed frog,common newt,False,28.03,0.0004,0.0001,87.76,33.36
+30,bullfrog,bullfrog,True,42.44,0.0007,0.0001,95.92,45.84
+95,jacamar,jacamar,True,56.22,0.0005,0.0001,83.67,53.38
+223,schipperke,schipperke,True,49.5,0.0003,0.0001,83.67,49.73
+238,Greater Swiss Mountain dog,Greater Swiss Mountain dog,True,30.82,0.0003,0.0001,87.76,36.8
+517,crane,crane,True,64.38,0.0003,0.0001,77.55,58.76
+616,knot,milk can,False,4.2,0.0004,0.0,91.84,16.78
+27,eft,eft,True,46.45,0.0005,0.0001,85.71,48.1
+574,golf ball,golf ball,True,49.58,0.0008,0.0001,93.88,49.77
+203,West Highland white terrier,West Highland white terrier,True,46.98,0.0004,0.0001,95.92,48.39
+733,pole,knot,False,19.77,0.0005,0.0001,93.88,18.53
+665,moped,unicycle,False,30.73,0.0005,0.0001,91.84,36.7
+718,pier,boathouse,False,13.68,0.0003,0.0001,85.71,17.65
+429,baseball,baseball,True,42.32,0.0002,0.0001,75.51,45.77
+225,malinois,malinois,True,38.06,0.0005,0.0001,95.92,43.05
+459,brassiere,brassiere,True,6.07,0.0002,0.0,89.8,16.89
+603,horse cart,horse cart,True,53.12,0.0004,0.0001,89.8,51.67
+284,Siamese cat,Siamese cat,True,27.1,0.0004,0.0001,87.76,32.04
+828,strainer,saltshaker,False,12.97,0.0002,0.0001,87.76,17.56
+890,volleyball,volleyball,True,66.03,0.0002,0.0001,67.35,60.13
+6,stingray,stingray,True,50.33,0.0003,0.0001,79.59,50.18
+777,scabbard,scabbard,True,26.69,0.0003,0.0001,91.84,31.43
+825,stone wall,stone wall,True,54.33,0.0002,0.0001,77.55,52.33
+163,bloodhound,bloodhound,True,43.75,0.0007,0.0001,91.84,46.6
+714,pick,pick,True,69.35,0.0003,0.0001,83.67,63.39
+348,ram,ram,True,39.96,0.0003,0.0001,85.71,44.32
+159,Rhodesian ridgeback,Rhodesian ridgeback,True,49.27,0.0006,0.0001,93.88,49.61
+220,Sussex spaniel,Sussex spaniel,True,28.2,0.0003,0.0001,81.63,33.59
+980,volcano,volcano,True,65.78,0.0004,0.0001,85.71,59.92
+781,scoreboard,scoreboard,True,57.17,0.0003,0.0001,87.76,53.93
+344,hippopotamus,hippopotamus,True,31.62,0.0003,0.0001,89.8,37.64
+94,hummingbird,hummingbird,True,44.54,0.0004,0.0001,85.71,47.05
+389,barracouta,tiger shark,False,18.09,0.0004,0.0001,89.8,18.27

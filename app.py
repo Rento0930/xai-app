@@ -42,18 +42,18 @@ def predict_route():
         output = model_module.current_model(input_tensor)
     top_class_idx = output.argmax(dim=1).item()
 
-    heatmap = cam.generate(input_tensor, top_class_idx)
+    heatmap_normalized, heatmap_raw = cam.generate(input_tensor, top_class_idx)
 
-    heatmap_stats = calculate_heatmap_stats(heatmap)
+    heatmap_stats = calculate_heatmap_stats(heatmap_raw)
     print(f"\nGrad-CAM Statistics / 統計: "
-          f"Max Activation/最大注目度={heatmap_stats['max_activation']}%, "
-          f"Mean Activation/平均注目度={heatmap_stats['mean_activation']}%, "
+          f"Max Activation(raw)/最大注目度(生値)={heatmap_stats['max_activation_raw']}, "
+          f"Mean Activation(raw)/平均注目度(生値)={heatmap_stats['mean_activation_raw']}, "
           f"Concentration/集中度={heatmap_stats['concentration_score']}%")
 
     top_probability = results[0]["probability"]
     fuzzy_result = calculate_confidence(
         prob_value=top_probability,
-        max_act_value=heatmap_stats["max_activation"],
+        max_act_value=heatmap_stats["max_activation_scaled"],
         concentration_value=heatmap_stats["concentration_score"]
     )
     print(f"\nFuzzy Confidence / ファジィ信頼度: "
@@ -73,7 +73,7 @@ def predict_route():
     heatmap_only_filename = "heatmaponly_" + safe_filename
     heatmap_path = os.path.join(UPLOAD_FOLDER, heatmap_filename)
     heatmap_only_path = os.path.join(UPLOAD_FOLDER, heatmap_only_filename)
-    apply_heatmap(image_path, heatmap, heatmap_path, heatmap_only_path)
+    apply_heatmap(image_path, heatmap_normalized, heatmap_path, heatmap_only_path)
 
     save_result(
         image_filename=safe_filename,

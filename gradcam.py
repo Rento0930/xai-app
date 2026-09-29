@@ -21,17 +21,20 @@ class GradCAM:
         self.model.zero_grad()
         output[0, class_idx].backward()
 
-        # 勾配の重要度を計算
         pooled_gradients = torch.mean(self.gradients, dim=[0, 2, 3])
         activations = self.activations[0]
 
         for i in range(activations.shape[0]):
             activations[i, :, :] *= pooled_gradients[i]
 
-        heatmap = torch.mean(activations, dim=0).detach().numpy()
-        heatmap = np.maximum(heatmap, 0)
-        heatmap /= np.max(heatmap)
-        return heatmap
+        heatmap_raw = torch.mean(activations, dim=0).detach().numpy()
+        heatmap_raw = np.maximum(heatmap_raw, 0)
+
+        # 表示用（正規化済み、0〜1）と、統計用（正規化前の生の値）の両方を返す
+        raw_max = np.max(heatmap_raw) if np.max(heatmap_raw) > 0 else 1e-8
+        heatmap_normalized = heatmap_raw / raw_max
+
+        return heatmap_normalized, heatmap_raw
 
 def apply_heatmap(image_path, heatmap, output_path, heatmap_only_path):
     """元画像にヒートマップを重ねた画像と、ヒートマップ単体の画像を保存する"""
@@ -48,21 +51,24 @@ def apply_heatmap(image_path, heatmap, output_path, heatmap_only_path):
     superimposed = np.uint8(np.clip(superimposed, 0, 255))
     cv2.imwrite(output_path, superimposed)
     
-def calculate_heatmap_stats(heatmap):
-    """ヒートマップから注目度の統計情報を計算する"""
-    # 最大注目度（0〜1の範囲。1に近いほど強く注目した場所がある）
-    max_activation = float(np.max(heatmap))
+def calculate_heatmap_stats(heatmap_raw):
+    """ヒートマップ（正規化前）から注目度の統計情報を計算する"""
+    max_activation_raw = float(np.max(heatmap_raw))
+    mean_activation_raw = float(np.mean(heatmap_raw))
 
-    # 平均注目度（画像全体でどれくらい満遍なく注目したか）
-    mean_activation = float(np.mean(heatmap))
+    # 実データの分布(50件評価: 概ね0.0002〜0.0008)を基準に0〜100へスケーリング
+    # 0.001を上限の目安とし、それ以上は100に丸める
+    SCALE_UPPER_BOUND = 0.001
+    max_activation_scaled = min((max_activation_raw / SCALE_UPPER_BOUND) * 100, 100)
 
-    # 集中度：閾値0.5以上の範囲がどれくらい狭いか
-    # 値が高いほど「一部分に集中して注目した」ことを意味する
-    high_activation_ratio = float(np.sum(heatmap > 0.5) / heatmap.size)
-    concentration_score = 1 - high_activation_ratio  # 狭いほど高スコア
+    raw_max = max_activation_raw if max_activation_raw > 0 else 1e-8
+    heatmap_normalized = heatmap_raw / raw_max
+    high_activation_ratio = float(np.sum(heatmap_normalized > 0.5) / heatmap_normalized.size)
+    concentration_score = 1 - high_activation_ratio
 
     return {
-        "max_activation": round(max_activation * 100, 2),
-        "mean_activation": round(mean_activation * 100, 2),
+        "max_activation_raw": round(max_activation_raw, 4),
+        "max_activation_scaled": round(max_activation_scaled, 2),
+        "mean_activation_raw": round(mean_activation_raw, 4),
         "concentration_score": round(concentration_score * 100, 2)
     }

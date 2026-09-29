@@ -19,7 +19,7 @@ def generate_explanation(label, probability, heatmap_stats, fuzzy_result, audien
 以下はAI画像分類システムの解析結果です。この内容を説明文にしてください。
 
 判定結果：{label}（確率 {probability}%）
-Grad-CAM最大注目度：{heatmap_stats['max_activation']}%
+Grad-CAM最大注目度（生値）：{heatmap_stats['max_activation_raw']}
 注目集中度：{heatmap_stats['concentration_score']}%
 ファジィ論理による信頼度：{fuzzy_result['score']}%（{fuzzy_result['label']}）
 
